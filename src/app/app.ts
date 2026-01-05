@@ -21,7 +21,7 @@ export class App {
 
   widok:any = signal<"kategorie" | "projekty">("kategorie");
   aktywna_kategoria:any = signal(null);
-  index:any = signal(0);
+  index: any = signal(1);
   wysuwane_otwarte:any = signal(false);
   okno_otwarte:any = signal(false);
 
