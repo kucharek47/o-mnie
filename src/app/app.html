@@ -13,7 +13,7 @@
           @if (kat === aktywna_kategoria()) {
             <div class="slownik-podlista">
               @for (proj of kat.projekty; track proj.tytul) {
-                <div class="podlista-item" (click)="widok.set("projekty"); index.set($index); wysuwane_otwarte.set(false)">
+                <div class="podlista-item" (click)="widok.set('projekty'); index.set($index); wysuwane_otwarte.set(false)">
                   {{ proj.tytul }}
                 </div>
               }
@@ -104,4 +104,3 @@
       (zamknij)="okno_otwarte.set(false)">
     </app-wyskakujace-url>
   }
-</div>

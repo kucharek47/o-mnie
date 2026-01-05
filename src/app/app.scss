@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $bg-dark: #0f172a;
 $bg-panel: #1e293b;
 $accent: #3b82f6;
@@ -19,7 +21,7 @@ $border: #334155;
 
   .wysuwane {
     width: 300px;
-    background-color: darken($bg-panel, 3%);
+    background-color: color.adjust($bg-panel, $lightness: -3%);
     border-right: 1px solid $border;
     display: flex;
     flex-direction: column;
@@ -33,7 +35,7 @@ $border: #334155;
       h3 {
         margin-top: 0;
         color: $accent;
-        text-shadow: 0 0 10px rgba($accent, 0.4);
+        text-shadow: 0 0 10px color.change($accent, $alpha: 0.4);
       }
 
       .slownik-lista {
@@ -47,11 +49,11 @@ $border: #334155;
           justify-content: space-between;
           align-items: center;
 
-          background: rgba($bg-dark, 0.4);
+          background: color.change($bg-dark, $alpha: 0.4);
           border: 1px solid $accent;
           border-radius: 15px;
-          color: lighten($accent, 10%);
-          box-shadow: 0 0 5px rgba($accent, 0.2), inset 0 0 5px rgba($accent, 0.05);
+          color: color.adjust($accent, $lightness: 10%);
+          box-shadow: 0 0 5px color.change($accent, $alpha: 0.2), inset 0 0 5px color.change($accent, $alpha: 0.05);
           transition: all 0.3s ease;
 
           .strzalka {
@@ -61,17 +63,17 @@ $border: #334155;
         }
 
         .slownik-naglowki:hover {
-          background: rgba($accent, 0.1);
-          box-shadow: 0 0 15px rgba($accent, 0.6), inset 0 0 10px rgba($accent, 0.2);
-          text-shadow: 0 0 8px rgba($accent, 0.8);
-          border-color: lighten($accent, 20%);
+          background: color.change($accent, $alpha: 0.1);
+          box-shadow: 0 0 15px color.change($accent, $alpha: 0.6), inset 0 0 10px color.change($accent, $alpha: 0.2);
+          text-shadow: 0 0 8px color.change($accent, $alpha: 0.8);
+          border-color: color.adjust($accent, $lightness: 20%);
           transform: translateY(-1px);
         }
 
         .slownik-podlista {
           margin-top: 5px;
           padding: 5px 0;
-          border-left: 2px solid rgba($accent, 0.3);
+          border-left: 2px solid color.change($accent, $alpha: 0.3);
           margin-left: 15px;
 
           .podlista-item {
@@ -85,8 +87,8 @@ $border: #334155;
 
           .podlista-item:hover {
             color: $text-white;
-            background: linear-gradient(90deg, rgba($accent, 0.1), transparent);
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+            background: linear-gradient(90deg, color.change($accent, $alpha: 0.1), transparent);
+            text-shadow: 0 0 5px color.change(white, $alpha: 0.5);
           }
         }
       }
@@ -126,8 +128,8 @@ $border: #334155;
       }
 
       button:hover {
-        box-shadow: 0 0 10px rgba($accent, 0.5);
-        background: rgba($accent, 0.1);
+        box-shadow: 0 0 10px color.change($accent, $alpha: 0.5);
+        background: color.change($accent, $alpha: 0.1);
       }
     }
 
@@ -142,7 +144,7 @@ $border: #334155;
       .boczne-przyciski {
         position: absolute;
         z-index: 10;
-        background: rgba(0,0,0,0.5);
+        background: color.change(black, $alpha: 0.5);
         color: white;
         border: none;
         font-size: 2rem;
@@ -201,7 +203,7 @@ $border: #334155;
             position: absolute;
             bottom: 0;
             width: 100%;
-            background: rgba(0,0,0,0.7);
+            background: color.change(black, $alpha: 0.7);
             padding: 10px;
             text-align: center;
             z-index: 2;
@@ -213,11 +215,11 @@ $border: #334155;
           height: 70%;
           z-index: 5;
 
-          border: 2px solid lighten($accent, 10%);
+          border: 2px solid color.adjust($accent, $lightness: 10%);
           box-shadow:
-            0 0 20px rgba($accent, 0.6),
-            0 0 40px rgba($accent, 0.2),
-            0 10px 50px rgba(0,0,0,0.8);
+            0 0 20px color.change($accent, $alpha: 0.6),
+            0 0 40px color.change($accent, $alpha: 0.2),
+            0 10px 50px color.change(black, $alpha: 0.8);
 
           transform: scale(1);
           background: #000;
@@ -225,9 +227,9 @@ $border: #334155;
 
         .karta.glowna:hover {
           box-shadow:
-            0 0 30px rgba($accent, 0.8),
-            0 0 60px rgba($accent, 0.4),
-            0 15px 60px rgba(0,0,0,0.9);
+            0 0 30px color.change($accent, $alpha: 0.8),
+            0 0 60px color.change($accent, $alpha: 0.4),
+            0 15px 60px color.change(black, $alpha: 0.9);
         }
 
         .karta.boczna {
@@ -249,7 +251,7 @@ $border: #334155;
     .opis {
       height: 100%;
       padding: 20px;
-      background: darken($bg-dark, 2%);
+      background: color.adjust($bg-dark, $lightness: -2%);
       overflow-y: auto;
 
       .opis-ramka {
@@ -259,7 +261,7 @@ $border: #334155;
         border: 1px solid $border;
         padding: 20px;
         border-radius: 8px;
-        background: rgba(255,255,255,0.02);
+        background: color.change(white, $alpha: 0.02);
         overflow-y: auto;
 
         h2 {
@@ -297,7 +299,7 @@ $border: #334155;
     .tlo {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: color.change(black, $alpha: 0.7);
       z-index: 90;
     }
 
