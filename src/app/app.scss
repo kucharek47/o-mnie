@@ -1,0 +1,323 @@
+$bg-dark: #0f172a;
+$bg-panel: #1e293b;
+$accent: #3b82f6;
+$text-white: #f1f5f9;
+$text-gray: #94a3b8;
+$border: #334155;
+
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-color: $bg-dark;
+  color: $text-white;
+  display: flex;
+  overflow: hidden;
+
+  .wysuwane {
+    width: 300px;
+    background-color: darken($bg-panel, 3%);
+    border-right: 1px solid $border;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 100;
+
+    .slownik {
+      padding: 20px;
+      overflow-y: auto;
+
+      h3 {
+        margin-top: 0;
+        color: $accent;
+        text-shadow: 0 0 10px rgba($accent, 0.4);
+      }
+
+      .slownik-lista {
+        margin-bottom: 15px;
+
+        .slownik-naglowki {
+          cursor: pointer;
+          padding: 12px 16px;
+          margin-bottom: 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          background: rgba($bg-dark, 0.4);
+          border: 1px solid $accent;
+          border-radius: 15px;
+          color: lighten($accent, 10%);
+          box-shadow: 0 0 5px rgba($accent, 0.2), inset 0 0 5px rgba($accent, 0.05);
+          transition: all 0.3s ease;
+
+          .strzalka {
+            font-size: 0.8em;
+            opacity: 0.8;
+          }
+        }
+
+        .slownik-naglowki:hover {
+          background: rgba($accent, 0.1);
+          box-shadow: 0 0 15px rgba($accent, 0.6), inset 0 0 10px rgba($accent, 0.2);
+          text-shadow: 0 0 8px rgba($accent, 0.8);
+          border-color: lighten($accent, 20%);
+          transform: translateY(-1px);
+        }
+
+        .slownik-podlista {
+          margin-top: 5px;
+          padding: 5px 0;
+          border-left: 2px solid rgba($accent, 0.3);
+          margin-left: 15px;
+
+          .podlista-item {
+            padding: 10px 10px 10px 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: $text-gray;
+            border-radius: 0 10px 10px 0;
+            transition: color 0.2s, background 0.2s;
+          }
+
+          .podlista-item:hover {
+            color: $text-white;
+            background: linear-gradient(90deg, rgba($accent, 0.1), transparent);
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+          }
+        }
+      }
+    }
+  }
+
+  .wysuwane.otwarte {
+    transform: translateX(0);
+  }
+
+  .glowne {
+    flex: 1;
+    display: grid;
+    grid-template-rows: auto 2fr 1fr;
+    height: 100%;
+    position: relative;
+
+    .pasek_gora {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+
+      button {
+        height: 40px;
+        border: 1px solid $accent;
+        border-radius: 8px;
+        color: $text-white;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      button:hover {
+        box-shadow: 0 0 10px rgba($accent, 0.5);
+        background: rgba($accent, 0.1);
+      }
+    }
+
+    .sterowanie {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px 0;
+
+      .boczne-przyciski {
+        position: absolute;
+        z-index: 10;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        font-size: 2rem;
+        padding: 20px;
+        cursor: pointer;
+      }
+
+      .boczne-przyciski.prev {
+        left: 10px;
+      }
+
+      .boczne-przyciski.next {
+        right: 10px;
+      }
+
+      .karuzela-pole {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        height: 100%;
+        perspective: 1000px;
+
+        .karta {
+          transition: all 0.4s ease;
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          border-radius: 15px;
+
+          img {
+            height: 100%;
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+            border-radius: 0;
+            display: block;
+          }
+
+          .ramka {
+            background: rgb(225,225,225);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 13px;
+          }
+
+          .tytul-dol {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            text-align: center;
+            z-index: 2;
+          }
+        }
+
+        .karta.glowna {
+          width: 60%;
+          height: 70%;
+          z-index: 5;
+
+          border: 2px solid lighten($accent, 10%);
+          box-shadow:
+            0 0 20px rgba($accent, 0.6),
+            0 0 40px rgba($accent, 0.2),
+            0 10px 50px rgba(0,0,0,0.8);
+
+          transform: scale(1);
+          background: #000;
+        }
+
+        .karta.glowna:hover {
+          box-shadow:
+            0 0 30px rgba($accent, 0.8),
+            0 0 60px rgba($accent, 0.4),
+            0 15px 60px rgba(0,0,0,0.9);
+        }
+
+        .karta.boczna {
+          width: 30%;
+          height: 50%;
+          opacity: 0.5;
+          filter: grayscale(80%);
+          z-index: 1;
+          background: rgb(225,225,225);
+        }
+
+        .karta.boczna:hover {
+          opacity: 0.8;
+          filter: grayscale(0%);
+          transform: scale(1.05);
+        }
+      }
+    }
+    .opis {
+      height: 100%;
+      padding: 20px;
+      background: darken($bg-dark, 2%);
+      overflow-y: auto;
+
+      .opis-ramka {
+        height: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid $border;
+        padding: 20px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.02);
+        overflow-y: auto;
+
+        h2 {
+          color: $accent;
+          margin-top: 0;
+        }
+
+        p {
+          line-height: 1.6;
+          color: $text-gray;
+
+          b {
+            color: $text-white;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .desktop-only { display: none !important; }
+
+  .main {
+    .wysuwane {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      transform: translateX(-100%);
+      width: 80%;
+    }
+
+    .tlo {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 90;
+    }
+
+    .glowne {
+      .sterowanie {
+        .boczne-przyciski {
+          height: 100%; top: 0; width: 50px; opacity: 0;
+        }
+
+        .karuzela-pole {
+          .karta.glowna {
+            width: 90%;
+            height: 80%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 601px) {
+  .mobile-only { display: none !important; }
+}

@@ -1,0 +1,24 @@
+<div class="ogol" (click)="onClose()">
+  <div class="main" (click)="$event.stopPropagation()">
+    <h3>Linki do projektu</h3>
+
+    @if (linki.length > 0) {
+      <div class="lista_linkow">
+        @for (lnk of linki; track lnk.link) {
+          <a [href]="lnk.link" target="_blank" class="przycisk" [class.github-przycisk]="lnk.git">
+            @if (lnk.git) {
+              <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" class="gh-icon" alt="GH">
+            }
+            <span>{{ lnk.nazwa }}</span>
+          </a>
+        }
+      </div>
+    } @else {
+      <div class="brak">
+        <p>Brak podanych linków dla tego projektu.</p>
+      </div>
+    }
+
+    <button class="zamkniecie" (click)="onClose()">Zamknij</button>
+  </div>
+</div>

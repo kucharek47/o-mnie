@@ -1,0 +1,115 @@
+.ogol {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.main {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #3b82f6;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transform: translateY(0);
+  animation: slideUp 0.3s ease-out;
+
+  h3 {
+    text-align: center;
+    color: #f1f5f9;
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  .lista_linkow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .przycisk {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #f1f5f9;
+      text-decoration: none;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .przycisk:hover {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+
+    .przycisk.github-przycisk {
+      background: #24292e;
+      border-color: #444c56;
+    }
+
+    .przycisk.github-przycisk:hover {
+      background: #2f363d;
+      border-color: #f1f5f9;
+    }
+
+    .przycisk.github-przycisk .gh-icon {
+      width: 20px;
+      height: 20px;
+      filter: invert(1);
+    }
+  }
+
+  .brak {
+    text-align: center;
+    padding: 20px 0;
+
+    p {
+      color: #94a3b8;
+      font-style: italic;
+      margin: 0;
+    }
+  }
+
+  .zamkniecie {
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.2s;
+  }
+
+  .zamkniecie:hover {
+    color: #f1f5f9;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
