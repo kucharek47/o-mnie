@@ -8,7 +8,7 @@ import { Kategoria, KategoriaRaw } from './interfaces';
 })
 export class pobieranie_danych {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5000/api/dane';
+  private apiUrl = '/api/dane';
 
   pobierz(): Observable<Kategoria[]> {
     return this.http.get<Record<string, KategoriaRaw>>(this.apiUrl).pipe(
