@@ -128,8 +128,8 @@ export class App {
   }
 
   zdj_slownik(item: Kategoria | Projekt | null): string {
-    if (!item) return 'assets/placeholder.png';
-    return item.path || 'assets/placeholder.png';
+    if (!item) return 'img/cv.png';
+    return item.path || 'img/cv.png';
   }
 
   url_slownik(item: Kategoria | Projekt | null): any {
